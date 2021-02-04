@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 import Personnes from "./components/Personnes";
 
 export default {
