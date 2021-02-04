@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- <titre-bleu 
+        v-for="article in articles" 
+        v-bind:montitre="article.titre"
+      >
+      </titre-bleu>
+
+      <paragraphe
+        v-for="article in articles" 
+        v-bind:monparagraphe="article.paragraphe"
+      > -->
+
+      <monarticle
+        v-for="article in articles"
+        v-bind:titre="article.titre"
+        v-bind:paragraphe="article.paragraphe"
+
+        v-bind:key="article.id"
+      >
+      </monarticle>
+
+      </paragraphe>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      const App = {
+        data() {
+          return {
+            articles: [
+              {
+                id: 0,
+                titre: "Il fait beau",
+                paragraphe:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              },
+              {
+                id: 1,
+                titre: "Le code c\est cool",
+                paragraphe:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              },
+              {
+                id: 2,
+                titre: "La semaine est presque finie",
+                paragraphe:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              },
+            ],
+          };
+        },
+      };
+
+      const app = Vue.createApp(App);
+
+      app.component("titre-bleu", {
+        props: ["montitre", "couleur"],
+        template: `
+            <h1 style="color:blue">{{ montitre }}</h1>
+        `,
+      });
+
+      app.component("paragraphe", {
+        props: ["monparagraphe"],
+        template: `
+            <p style="">{{ monparagraphe }}</p>
+        `,
+      });
+
+      app.component("monarticle", {
+        props: ["titre", "paragraphe"],
+        template: `
+            <titre-bleu v-bind:montitre="titre"></titre-bleu>
+            <paragraphe v-bind:monparagraphe="paragraphe"></paragraphe>
+            <button>mon bouton</button>
+        `,
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

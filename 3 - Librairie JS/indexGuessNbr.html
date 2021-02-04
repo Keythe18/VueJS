@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="game">
+      <h3>Devine le nombre</h3>
+      <br />
+      <input v-model="inputUser" />
+      <button v-on:click="btn">Comparer</button>
+      <br />
+      <br />
+      <div>tmp result : {{ result }}</div>
+      <div>tmp rdnNbr : {{ rdnNbr }}</div>
+      <div>tmp score : {{ score }}</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const Game = {
+        data() {
+          return {
+            rdnNbr: null,
+            inputUser: null,
+            result: "",
+            score: 0,
+          };
+        },
+
+        methods: {
+          nbRdn() {
+            this.rdnNbr = Math.floor(Math.random() * 100) + 1;
+          },
+
+          btn() {
+            this.score++;
+            if (this.rdnNbr > this.inputUser) {
+              this.result = "Le chiffre est plus grand !";
+            } else if (this.rdnNbr < this.inputUser) {
+              this.result = "Le chiffre est plus petit !";
+            } else this.result = "Victoire en " + this.score + " coups";
+          },
+        },
+        mounted() {
+          this.nbRdn();
+        },
+      };
+      Vue.createApp(Game).mount("#game");
+    </script>
+  </body>
+</html>

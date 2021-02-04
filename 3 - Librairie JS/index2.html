@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="counter">Counter: {{ counter }}
+        <button v-on:click="reset">Reset</button>
+        </br></br>
+        <input v-model="message" />
+        <button v-on:click="valueInput">Value Input</button>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const Counter = {
+        data() {
+          return {
+            counter: 0,
+            montitre: 'Mon super compteur',
+            vitesse: 1000,
+            message: 'Bonjour Vue!',
+          };
+        },
+
+        methods:{
+            reset(){
+                this.counter = 0
+            },
+
+            valueInput(){
+                this.message = "Ma valeur par defaut"
+            }
+        },
+
+        mounted() {
+          setInterval(() => {
+            this.counter++;
+          }, 1000);
+        },
+      };
+      Vue.createApp(Counter).mount("#counter");
+    </script>
+  </body>
+</html>

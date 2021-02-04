@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="counter">
+      <input v-model="val1" />
+      <input v-model="val2" />
+      <button v-on:click="result">Resultat</button>
+      <div>{{ monResultat }}</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const Counter = {
+        data() {
+          return {
+            val1: null,
+            val2: null,
+            monResultat: "",
+          };
+        },
+
+        methods: {
+          result() {
+            if (this.val1 > this.val2) {
+              this.monResultat = this.val1 + " > " + this.val2;
+            } else if (this.val1 < this.val2) {
+              this.monResultat = this.val1 + " < " + this.val2;
+            } else this.monResultat = this.val1 + " = " + this.val2;
+          },
+        },
+
+        mounted() {
+          setInterval(() => {
+            // this.counter++;
+          }, 1000);
+        },
+      };
+      Vue.createApp(Counter).mount("#counter");
+    </script>
+  </body>
+</html>

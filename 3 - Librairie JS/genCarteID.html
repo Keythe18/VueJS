@@ -1,0 +1,84 @@
+<!-- CREER UN SYSTEME D'AFFICHAGE DE CARTE D'IDENTITE
+
+CREER UN TABLEAU D'OBJET COMPRENENT CHACUN : ID, NOM, PRENOM, AGE
+
+CREER UN COMPOSANT AFFICHANT SES INFORMATIONS
+AFFICHER TOUTES LES CARTES D'IDENTITE -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <carteid
+        v-for="personne in personnes"
+        v-bind:nom="personne.nom"
+        v-bind:prenom="personne.prenom"
+        v-bind:id="personne.id"
+        v-bind:age="personne.age"
+        v-bind:sexe="personne.sexe"
+        v-bind:key="personne.id"
+      >
+      </carteid>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const App = {
+        data() {
+          return {
+            personnes: [
+              {
+                id: 0,
+                nom: "Douglas",
+                prenom: "Marc",
+                age: 39,
+                sexe: "M",
+              },
+              {
+                id: 1,
+                nom: "Antoinette",
+                prenom: "Marie",
+                age: 68,
+                sexe: "F",
+              },
+              {
+                id: 2,
+                nom: "Mars",
+                prenom: "Alien",
+                age: 187,
+                sexe: "A",
+              },
+              {
+                id: 3,
+                nom: "Trump",
+                prenom: "Donald",
+                age: 15,
+                sexe: "M",
+              },
+            ],
+          };
+        },
+      };
+
+      const app = Vue.createApp(App);
+
+      app.component("carteid", {
+        props: ["id", "nom", "prenom", "age", "sexe"],
+        template: `
+            <div style="font-family: sans-serif; border: 2px solid gray; padding-left: 20px; width:30%; margin: 5px 5px; border-radius: 5px; float:left">
+              <h1 style="color:blue">{{ prenom }} {{ nom }}</h1>
+              <p style="color:grey">Age : {{ age }}</p>
+              <p style="color:grey">Sexe : {{ sexe }}</p>
+            </div>
+        `,
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

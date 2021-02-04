@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="root">
+
+        <carte-identite 
+            v-for="identite in identites"
+            v-bind:identitedata="identite"
+            v-bind:key="identite.id"
+        >
+        </carte-identite>
+
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const Parametre = {
+            data(){
+                return {
+                    identites: [
+                        {id:0, nom:'dupond', prenom:'jean', age:18},
+                        {id:1, nom:'frimat', prenom:'marie', age:32},
+                        {id:2, nom:'bani', prenom:'christian', age:40},
+                        {id:3, nom:'sanvee', prenom:'ousmane', age:8},
+                    ]
+                }
+            }
+        }
+
+        const app = Vue.createApp(Parametre)
+
+        app.component('carte-identite', {
+            props: ['identitedata'],
+            template: `<div style="border:1px solid blue;">
+                            <div>{{ identitedata.nom }} {{ identitedata.prenom }}</div>
+                            <div>{{ identitedata.age }} ans</div>
+                        </div>`
+        })
+
+        app.mount('#root')
+
+    </script>
+</body>
+</html>

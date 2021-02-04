@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="toogle">Cacher</button>
+
+      <div v-if="display">
+        <div v-for="div in divs" v-bind:style="div.style"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const App = {
+        data() {
+          return {
+            display: true,
+            divs: [],
+          };
+        },
+        methods: {
+          toogle() {
+            this.display = this.display ? false : true;
+          },
+
+          genRdn(min, max) {
+            return Math.floor(Math.random() * (max - min) + min) + 1;
+          },
+
+          rdnCol() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+          },
+        },
+
+        mounted() {
+          let nbDiv = this.genRdn(10, 300);
+          for (let i = 0; i < nbDiv; i++) {
+            this.divs.push({
+              style: `width:${this.genRdn(10, 300)}px; height:${this.genRdn(10, 300)}px; background:${this.rdnCol()}; float:left;`,
+            });
+          }
+          console.log(this.divs);
+        },
+      };
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
