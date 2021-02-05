@@ -8,6 +8,10 @@
       <router-link to="/contact">Contact</router-link>
     </div>
     <router-view />
+
+    <footer id="footerSite">
+      Mon footer !
+    </footer>
   </div>
 </template>
 
@@ -37,5 +41,12 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#footerSite{
+  height: 50px;
+  background-color:grey;
+  text-align: center;
+  padding-top: 30px;
 }
 </style>
